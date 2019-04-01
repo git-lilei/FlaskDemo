@@ -6,7 +6,7 @@ import datetime
 app = Flask(__name__)
 
 
-# 我的首页
+# 首页
 @app.route('/')
 def index():
     user = None
