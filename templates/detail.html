@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+    <link rel="stylesheet" type="text/css"
+          href="../static/js/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../static/js/lib/JQuery/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"
+            charset="utf-8"></script>
+</head>
+<body>
+<div class="container">
+    <h1>商品详情</h1>
+    {% if userinfo %}
+        <h3>
+            <span>================</span><br>
+            <a style="color: #b92c28" href="#">您好！{{ userinfo }}</a><br>
+            <a href="/quit">退出</a><br>
+            <span>================</span><br>
+            <a href="/list">返回上一级</a>
+        </h3>
+    {% endif %}
+    {% for pro in booklist %}
+        <div class="page-header">
+            <h1>{{ pro.bookname }}
+                <small>{{ pro.author }}</small>
+            </h1>
+        </div>
+        <p>{{ pro.abstract }}</p>
+    {% endfor %}
+</div>
+</body>
+</html>

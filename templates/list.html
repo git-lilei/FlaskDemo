@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="../static/js/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../static/js/lib/JQuery/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"
+            charset="utf-8"></script>
+    <style type="text/css">
+        a.herfa {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        th, td {
+            text-align: center;
+        }
+
+        /*设置奇数行颜色*/
+        table #trstyle:nth-child(odd) {
+            background: #CEECEC;
+        }
+
+        /*设置偶数行颜色*/
+        table #trstyle:nth-child(even) {
+            background: #FCF8E3;
+        }
+
+        .priceinput {
+            width: 60px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>商品列表</h1>
+    {% if userinfo %}
+        <h3>
+            <span>================================================================</span><br>
+            <a href="/">返回上一级</a>
+            <a style="float: right" href="/quit">退出</a>
+            <a style="color: #b92c28;float: right;margin-right: 30px" href="#">您好！{{ userinfo }}</a>
+            <span>================================================================</span><br>
+        </h3>
+    {% endif %}
+
+    <div style="float: right; width: 200px;" class="input-group">
+        <input type="text" id="search" name="search" class="form-control" placeholder="请输入要查询的书名">
+        <span class="input-group-btn">
+			<button class="btn btn-info" onclick="searchBookByName()" type="button">Go!</button>
+		</span>
+    </div>
+
+    <button type="button" class="btn btn-info"><a class="herfa" href="/insertbook">添加</a></button>
+
+
+    <div style="float: right;margin-right: 146px;margin-top: 7px" class="dropdown">
+        <button type="button" class="btn btn-danger btn-xs dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">价格
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="/checkBookByPriceDesc">价格由高到低</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="/checkBookByPriceAsc">价格由低到高</a>
+            </li>
+        </ul>
+    </div>
+
+    <div style="float: right;margin-right: 60px;margin-top: 7px">
+        <form action="/searchBookByPrice" method="post">
+            <input class="priceinput" type="text" name="beginprice" placeholder="起始价格">~
+            <input class="priceinput" type="text" name="endprice" placeholder="结束价格">
+            <button class="btn btn-xs btn-info" type="submit">搜索</button>
+        </form>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-condensed table-striped table-hover">
+            <tr>
+                <th>编号</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>价格</th>
+                <th>操作</th>
+            </tr>
+            {% for pro in prolist %}
+                <tr id="trstyle">
+                    <td>{{ pro.id }}</td>
+                    <td><a href="/detail/{{ pro.id }}">{{ pro.bookname }}</a></td>
+                    <td>{{ pro.author }}</td>
+                    <td>{{ pro.price }}</td>
+                    <td>
+                        <button type="button" class="btn-xs btn-warning" onclick="updatebook({{ pro.id }})">
+                            修改
+                        </button>
+                        <button type="button" class="btn-xs btn-danger">
+                            <a class="herfa" href="/deletebook/{{ pro.id }}">删除</a>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function updatebook(id) {
+        let ntime = new Date().getTime();
+        $.ajax({
+            url: '/updatebook/' + id + '?v=' + ntime,
+            type: 'GET',
+            success() {
+                window.location.href = '/updatebook/' + id
+            }
+        });
+    }
+
+    function searchBookByName() {
+        let name = $('#search').val();
+        $.ajax({
+            url: "/searchBookByName/" + name,
+            type: 'GET',
+            success() {
+                window.location.href = "/searchBookByName/" + name
+            }
+        });
+    }
+</script>
+</body>
+</html>

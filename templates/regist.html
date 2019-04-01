@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link rel="stylesheet" type="text/css"
+          href="../static/js/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../static/js/lib/JQuery/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"
+            charset="utf-8"></script>
+</head>
+<body>
+<div class="container">
+    <h1>用户注册</h1>
+    <form class="form-horizontal" role="form" action="/regist" method="post">
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label">请输入账号：</label>
+            <div class="col-sm-10" style="width: 18%">
+                <input type="text" class="form-control" name="account" id="firstname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">请输入密码：</label>
+            <div class="col-sm-10" style="width: 18%">
+                <input type="password" class="form-control" name="password" id="lastname">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">注册</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

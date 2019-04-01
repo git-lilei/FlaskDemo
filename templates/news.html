@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>新闻界面</h1>
+    {% if userinfo %}
+        <h3>
+            <span>================</span><br>
+            <a style="color: #b92c28" href="#">您好！{{ userinfo }}</a><br>
+            <a href="/quit">退出</a><br>
+            <span>================</span><br>
+            <a href="/">返回上一级</a>
+        </h3>
+    {% endif %}
+    <ul>
+        {% for new in pagenews %}
+            <li>id:{{ new.id }} name:{{ new.name }} price:{{ new.price }}</li>
+        {% endfor %}
+
+    </ul>
+</body>
+</html>

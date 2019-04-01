@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加页面</title>
+    <link rel="stylesheet" type="text/css"
+          href="../static/js/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../static/js/lib/JQuery/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/lib/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"
+            charset="utf-8"></script>
+</head>
+<body>
+<div class="container">
+    <h1>添加商品</h1>
+    {% if userinfo %}
+        <h3>
+            <span>==================================================================================</span><br>
+            <a href="/">返回上一级</a>
+            <a style="float: right" href="/quit">退出</a>
+            <a style="color: #b92c28;float: right;margin-right: 30px" href="#">您好！{{ userinfo }}</a>
+            <span>==================================================================================</span><br>
+        </h3>
+    {% endif %}
+    <form class="form-horizontal" role="form" action="/insertbook" method="post">
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label">请输入书名：</label>
+            <div class="col-sm-10" style="width: 15%">
+                <input type="text" class="form-control" name="bookname" id="firstname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">请输入作者：</label>
+            <div class="col-sm-10" style="width: 12%">
+                <input type="text" class="form-control" name="author" id="lastname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">请输入简介：</label>
+            <div class="col-sm-10" style="width: 30%">
+                <textarea class="form-control" rows="5" name="abstract"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">请输入价格：</label>
+            <div class="col-sm-10" style="width: 10%">
+                <input type="text" class="form-control" name="price" id="lastname">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">确定</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
